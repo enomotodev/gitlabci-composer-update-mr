@@ -44,6 +44,11 @@ job:on-schedule:
 
 NOTE: Please make sure you replace `<username>` and `<email>` with yours.
 
+### Setting Schedule
+
+1. On GitLab dashboard, go to your application's "Schedules" -> "New schedule"
+1. Create new schedule and save
+
 ## CLI command references
 
 General usage:
