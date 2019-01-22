@@ -1,0 +1,35 @@
+{
+    "name": "enomotodev/gitlabci-composer-update-mr",
+    "description": "Create MergeRequest of composer update in GitLabCI",
+    "keywords": ["composer", "gitlabci", "gitlab"],
+    "license": "MIT",
+    "type": "library",
+    "homepage": "https://enomotodev.hatenablog.com/",
+    "support": {
+        "issues": "https://github.com/enomotodev/gitlabci-composer-update-mr/issues",
+        "source": "https://github.com/enomotodev/gitlabci-composer-update-mr"
+    },
+    "authors": [
+        {
+            "name": "enomotodev",
+            "email": "enomoto.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "davidrjonas/composer-lock-diff": "^1.0@dev",
+        "m4tthumphrey/php-gitlab-api": "^9.11",
+        "php-http/guzzle6-adapter": "^1.0"
+    },
+    "bin": [
+        "gitlabci-composer-update-mr"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Enomotodev\\GitLabCIComposerUpdateMr\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
