@@ -62,6 +62,7 @@ class Command
                     }
                     $text .= PHP_EOL;
                 }
+                $text .= PHP_EOL;
             }
         }
 
