@@ -77,9 +77,6 @@ class Command
      */
     private function setupGit($name, $email)
     {
-        $url = getenv('CI_REPOSITORY_URL');
-
-        system("git remote add gitlab-url-with-token {$url}");
         system("git config user.name {$name}");
         system("git config user.email {$email}");
     }
@@ -93,7 +90,7 @@ class Command
         system("git add composer.lock");
         system("git commit -m '$ composer update'");
         system("git branch -M {$branch}");
-        system("git push -q gitlab-url-with-token {$branch}");
+        system("git push -q origin {$branch}");
     }
 
     /**
