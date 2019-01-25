@@ -87,10 +87,10 @@ class Command
      */
     private function createBranch($branch)
     {
+        system("git checkout -b {$branch}");
         system("git add composer.lock");
         system("git commit -m '$ composer update'");
-        system("git branch -M {$branch}");
-        system("git push -q origin {$branch}");
+        system("git push origin {$branch}");
     }
 
     /**
