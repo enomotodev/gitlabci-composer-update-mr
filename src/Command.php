@@ -79,6 +79,11 @@ class Command
     {
         system("git config user.name {$name}");
         system("git config user.email {$email}");
+
+        $token = getenv('GITLAB_API_PRIVATE_TOKEN');
+        $repositoryUrl = getenv('CI_REPOSITORY_URL');
+        preg_match('/https:\/\/gitlab-ci-token:(.*)@(.*)/', $repositoryUrl, $matches);
+        system("git remote set-url origin \"https://gitlab-ci-token:{$token}@{$matches[2]}\"");
     }
 
     /**
