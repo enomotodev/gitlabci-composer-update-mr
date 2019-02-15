@@ -111,7 +111,7 @@ class Command
         $projectId = getenv('CI_PROJECT_ID');
         $projectPath = getenv('CI_PROJECT_PATH');
         $repositoryUrl = getenv('CI_REPOSITORY_URL');
-        $ciUrl = rtrim($repositoryUrl, $projectPath);
+        $ciUrl = str_replace("{$projectPath}.git", '', $repositoryUrl);
 
         $title = 'composer update at ' . $now->format('Y-m-d H:i:s T');
 
