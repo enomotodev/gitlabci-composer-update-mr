@@ -54,7 +54,7 @@ NOTE: Please make sure you replace `<username>` and `<email>` with yours.
 General usage:
 
 ```
-$ gitlabci-composer-update-mr<git username> <git email address> <git base branch>
+$ gitlabci-composer-update-mr <git username> <git email address> <git base branch>
 ```
 
 ## License
