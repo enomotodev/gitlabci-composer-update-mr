@@ -1,6 +1,7 @@
 # gitlabci-composer-update-mr
 
 [![Latest Stable Version](https://poser.pugx.org/enomotodev/gitlabci-composer-update-mr/v/stable.png)](https://packagist.org/packages/enomotodev/gitlabci-composer-update-mr)
+[![Build Status](https://api.travis-ci.org/enomotodev/gitlabci-composer-update-mr.svg?branch=master)](https://travis-ci.org/enomotodev/gitlabci-composer-update-mr)
 
 ## Installation
 
