@@ -49,25 +49,10 @@ class Command
         $json = system('$COMPOSER_HOME/vendor/bin/composer-lock-diff --json');
         $diff = json_decode($json, true);
 
-        $text = '';
-        foreach (['changes', 'changes-dev'] as $key) {
-            if (!empty($diff[$key])) {
-                $text .= "### {$key}" . PHP_EOL;
-                foreach ($diff[$key] as $packageName => $value) {
-                    $text .= "- {$packageName}: ";
-                    if ($value[2]) {
-                        $text .= "[`{$value[0]}...{$value[1]}`]({$value[2]})";
-                    } else {
-                        $text .= "`{$value[0]}...{$value[1]}`";
-                    }
-                    $text .= PHP_EOL;
-                }
-                $text .= PHP_EOL;
-            }
-        }
+        $description = $this->createMergeRequestDescription($diff);
 
         $this->createBranch($branch);
-        $this->createMergeRequest($base, $branch, $now, $text);
+        $this->createMergeRequest($base, $branch, $now, $description);
     }
 
     /**
@@ -102,10 +87,10 @@ class Command
      * @param  string $base
      * @param  string $branch
      * @param  \DateTime $now
-     * @param  string $text
+     * @param  string $description
      * @return void
      */
-    private function createMergeRequest($base, $branch, $now, $text)
+    private function createMergeRequest($base, $branch, $now, $description)
     {
         $token = getenv('GITLAB_API_PRIVATE_TOKEN');
         $projectId = getenv('CI_PROJECT_ID');
@@ -129,11 +114,37 @@ class Command
                 $title,
                 null,
                 null,
-                '## Updated Composer Packages' . PHP_EOL . PHP_EOL . $text
+                '## Updated Composer Packages' . PHP_EOL . PHP_EOL . $description
             );
         } catch (Exception $e) {
             fwrite(STDERR, $e->getMessage() . PHP_EOL);
             exit(1);
         }
+    }
+
+    /**
+     * @param  array $diff
+     * @return string
+     */
+    private function createMergeRequestDescription($diff)
+    {
+        $description = '';
+        foreach (['changes', 'changes-dev'] as $key) {
+            if (!empty($diff[$key])) {
+                $description .= "### {$key}" . PHP_EOL;
+                foreach ($diff[$key] as $packageName => $value) {
+                    $description .= "- {$packageName}: ";
+                    if ($value[2]) {
+                        $description .= "[`{$value[0]}...{$value[1]}`]({$value[2]})";
+                    } else {
+                        $description .= "`{$value[0]}...{$value[1]}`";
+                    }
+                    $description .= PHP_EOL;
+                }
+                $description .= PHP_EOL;
+            }
+        }
+
+        return $description;
     }
 }
