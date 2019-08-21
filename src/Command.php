@@ -39,7 +39,7 @@ class Command
         $now = new DateTime('now');
         $branch = 'composer-update-' . $now->format('YmdHis');
 
-        if (strpos(system('git status -sb'), 'composer.lock') === false) {
+        if (strpos(system('git status -s composer.lock'), 'composer.lock') === false) {
             fwrite(STDOUT, 'No changes.' . PHP_EOL);
             exit(0);
         }
