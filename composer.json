@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^5.6 || ^7.0",
-        "davidrjonas/composer-lock-diff": "^1.0@dev",
+        "enomotodev/composer-lock-diff": "^1.0@dev",
         "m4tthumphrey/php-gitlab-api": "^9.11",
         "php-http/guzzle6-adapter": "^1.0"
     },
