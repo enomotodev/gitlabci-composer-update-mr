@@ -17,22 +17,22 @@ class CommandTest extends TestCase
 
         $expected = <<<TEXT
 ### changes
-- foo: [`v1.0...v1.1`](https://github.com/example/foo/compare/v1.0...v1.1)
+- [foo](https://github.com/example/foo): [`v1.0...v1.1`](https://github.com/example/foo/compare/v1.0...v1.1)
 
 ### changes-dev
 - bar: `9.9.9...REMOVED`
-- baz: `NEW...0.0.1`
+- [baz](https://github.com/example/baz): `NEW...0.0.1`
 
 
 TEXT;
 
         $this->assertSame($expected, $method->invoke($object, [
             'changes' => [
-                'foo' => ['v1.0', 'v1.1', 'https://github.com/example/foo/compare/v1.0...v1.1'],
+                'foo' => ['v1.0', 'v1.1', 'https://github.com/example/foo/compare/v1.0...v1.1', 'https://github.com/example/foo'],
             ],
             'changes-dev' => [
-                'bar' => ['9.9.9', 'REMOVED', ''],
-                'baz' => ['NEW', '0.0.1', ''],
+                'bar' => ['9.9.9', 'REMOVED', '', ''],
+                'baz' => ['NEW', '0.0.1', '', 'https://github.com/example/baz'],
             ],
         ]));
     }
