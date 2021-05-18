@@ -11,7 +11,10 @@ $ composer require enomotodev/gitlabci-composer-update-mr
 
 ## Prerequisites
 
-The application on which you want to run continuous composer update must be configured to be built on GitLabCI.
+The application on which you want to run continuous composer update must be configured to be built on GitLabCI. It should also contain:
+
+- php >= 7.2.5 or php >= 8.0
+- composer
 
 ## Usage
 
@@ -40,7 +43,7 @@ job:on-schedule:
     - schedules
   script:
     - "composer global require enomotodev/gitlabci-composer-update-mr"
-    - "$COMPOSER_HOME/vendor/bin/gitlabci-composer-update-mr <username> <email> master"
+    - "~/.composer/vendor/bin/gitlabci-composer-update-mr <username> <email> master"
 ```
 
 NOTE: Please make sure you replace `<username>` and `<email>` with yours.
